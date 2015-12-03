@@ -32,5 +32,7 @@ ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin:$GOROOT/bin
 
 WORKDIR /gopath
+RUN apt-get install gcc
+RUN go get github.com/tools/godep
 
 EXPOSE 22 80

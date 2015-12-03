@@ -32,6 +32,5 @@ ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin:$GOROOT/bin
 
 WORKDIR /gopath
-RUN git clone
 
 EXPOSE 22 80

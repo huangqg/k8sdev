@@ -9,7 +9,7 @@ RUN echo 'Asia/Shanghai' > /etc/timezone
 # RUN rm /etc/apt/sources.list
 # ADD sources.list /etc/apt/
 
-RUN apt-get update && apt-get install -yq git wget
+RUN apt-get update && apt-get install -yq git wget gcc
 RUN rm -rf /var/cache/apt/archives /var/cache/apt/archives/partial
 
 RUN wget -q http://7rf3a1.com1.z0.glb.clouddn.com/go1.5.1.linux-amd64.tar.gz
@@ -32,7 +32,7 @@ ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin:$GOROOT/bin
 
 WORKDIR /gopath
-RUN apt-get install gcc
+
 RUN go get github.com/tools/godep
 
 EXPOSE 22 80

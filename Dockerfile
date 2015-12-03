@@ -25,14 +25,22 @@ RUN echo 'export GOPATH=/gopath' >> /root/.bash_profile && \
 echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> /root/.bash_profile && \
 echo 'export GOROOT=/usr/local/go' >> /root/.bash_profile
 
-VOLUME /gopath
+# 设置SSH服务中终端的超时时间或不超时
+RUN echo 'ClientAliveInterval 120' >> /etc/ssh/sshd_config && \
+echo 'ClientAliveCountMax 3' >> /etc/ssh/sshd_config
+
+
+VOLUME /code
 ENV GOVERSION 1.5.1
 ENV GOROOT /usr/local/go
 ENV GOPATH /gopath
 ENV PATH $PATH:$GOPATH/bin:$GOROOT/bin
-
-WORKDIR /gopath
+ENV ROOT_PASS tenxcloud
 
 RUN go get github.com/tools/godep
+RUN mkdir /gopath/src/k8s.io
+WORKDIR /gopath/src/k8s.io
 
-EXPOSE 22 80
+RUN ln -s /code/kubernetes
+
+EXPOSE 22

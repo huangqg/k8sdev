@@ -9,7 +9,7 @@ RUN npm install
 
 VOLUME /kubernetes
 
-RUN ln -s /kubernetes /opt/nodejs/k8s
+RUN ln -s /kubernetes /opt/nodejs
 
 # Expose the container port
 EXPOSE 5000

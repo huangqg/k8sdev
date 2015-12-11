@@ -4,11 +4,11 @@ var fs = require('fs')
 var app = express();
 
 app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/k8s'))
+app.use(express.static(__dirname + '/kubernetes'))
 
 app.get('/', function(request, response) {
 
-  files = fs.readdirSync('k8s');
+  files = fs.readdirSync('kubernetes');
   var data = '';
   files.forEach(function(item) {
     data = data + '<p><a href="/'+item+'">'+item+'</a></p>';
